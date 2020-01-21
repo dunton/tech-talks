@@ -1,11 +1,12 @@
-import React, { Component } from "react";
-import { uuid } from "uuidv4";
-import { classData } from "../data/classData";
-import ListItem from "./ListItem";
+import React, { Component } from 'react';
+import { uuid } from 'uuidv4';
+import { classData } from '../data/classData';
+import ListItem from './ListItem';
+import { ThemeContext, useTheme } from '../contexts/ThemeContext';
 
 class ListProps extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       activeIndex: null
     };
@@ -13,7 +14,7 @@ class ListProps extends Component {
   renderListItems = () => {
     return classData.map((fitnessClass, i) => {
       const key = uuid();
-      const active = i === this.state.activeIndex ? "active" : "";
+      const active = i === this.state.activeIndex ? 'active' : '';
       return (
         <ListItem
           {...fitnessClass}
@@ -32,6 +33,8 @@ class ListProps extends Component {
     });
   };
   render() {
+    // example one
+    //let theme = this.context;
     return (
       <div className="container">
         <div className="col-md-6 offset-md-3">
@@ -42,5 +45,8 @@ class ListProps extends Component {
     );
   }
 }
+
+// example one
+ListProps.contextType = ThemeContext;
 
 export default ListProps;
