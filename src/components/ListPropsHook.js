@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { uuid } from 'uuidv4';
 import { classData } from '../data/classData';
 import ListItem from './ListItem';
+import { AuthContext } from '../contexts/AuthContext';
 
 const ListPropsHook = () => {
   const [activeIndex, setActiveIndex] = useState();
@@ -23,6 +24,11 @@ const ListPropsHook = () => {
       );
     });
   };
+
+  const authContext = useContext(AuthContext);
+  if (!authContext.isLoggedIn) {
+    return <h1>Please Login!</h1>;
+  }
 
   return (
     <div className="container">
